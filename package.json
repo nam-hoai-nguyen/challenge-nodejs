@@ -1,0 +1,37 @@
+{
+  "name": "challenge-nodejs",
+  "version": "1.0.0",
+  "description": "Dự án thử thách học nodejs theo link https://www.youtube.com/watch?v=jR-n-cQnpNI&list=PLncHg6Kn2JT4smWdJceM0bDg4YUF3yqLu&index=1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nam-hoai-nguyen/challenge-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nam-hoai-nguyen/challenge-nodejs/issues"
+  },
+  "homepage": "https://github.com/nam-hoai-nguyen/challenge-nodejs#readme",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.5",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.1",
+    "sequelize-cli": "^6.6.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  }
+}
