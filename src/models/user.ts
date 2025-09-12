@@ -17,7 +17,7 @@ class User extends Model<UserAttributes, UserCreationAttributes>
     public name!: string;
     public email!: string;
     public password!: string;
-    public role!: string;
+    public role!:     string;
 }
 
 User.init(
