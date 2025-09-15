@@ -1,21 +1,18 @@
 // src/controllers/userController.ts
 import { Request, Response } from "express";
 import User from "../models/User";   // ✅ import default đúng cách
+import { successResponse, errorResponse } from "../utils/responseHandler";
+import { getAllUsersService } from "../services/userService";
+import { userListTransformer } from "../transformers/userTransformer";
+
+
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const users = await User.findAll();
-        res.json({
-            success: true,
-            data: users,
-        });
+        const users = await getAllUsersService();
+        return successResponse(res, "Lấy danh sách users thành công", userListTransformer(users));
     } catch (error: any) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            message: "Lỗi khi lấy danh sách users",
-            error: error.message,
-        });
+        return errorResponse(res, error.message, 500);
     }
 };
 

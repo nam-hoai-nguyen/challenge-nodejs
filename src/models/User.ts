@@ -2,18 +2,7 @@
 import { DataTypes, Model, Optional } from "sequelize";
 // @ts-ignore
 import sequelize from "../config/db";
-
-// Định nghĩa interface cho các field trong bảng
-export interface UserAttributes {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    role: string;
-}
-
-// Các field có thể bỏ qua khi tạo mới (id auto-increment, role default)
-export type UserCreationAttributes = Optional<UserAttributes, "id" | "role">;
+import { UserAttributes, UserCreationAttributes } from "../types/user";
 
 // Khai báo class Model
 class User
