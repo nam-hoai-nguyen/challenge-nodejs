@@ -9,10 +9,12 @@ import {
 } from "../controllers/userController";
 import { createUserSchema } from "../validators/userValidator";
 import { validate } from "../middlewares/validate";
+import { authMiddleware } from "../middlewares/auth";
+
 
 const router = Router();
 
-router.get("/", getAllUsers);
+router.get("/", authMiddleware, getAllUsers); // chỉ user có token mới xem được
 router.get("/:id", getUserById);
 router.post("/", validate(createUserSchema), createUser);
 router.put("/:id", updateUser);

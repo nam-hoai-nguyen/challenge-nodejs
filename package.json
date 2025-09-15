@@ -28,15 +28,19 @@
   "homepage": "https://github.com/nam-hoai-nguyen/challenge-nodejs#readme",
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.5",
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.1",
     "@typescript-eslint/eslint-plugin": "^8.43.0",
     "@typescript-eslint/parser": "^8.43.0",
