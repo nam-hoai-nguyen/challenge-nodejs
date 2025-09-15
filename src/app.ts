@@ -1,16 +1,10 @@
-import express, { Application, Request, Response } from 'express';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import express, { Application } from "express";
+import routes from "./routes";
 
 const app: Application = express();
 
-// Middleware
 app.use(express.json());
 
-// Route thử nghiệm
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello Node.js + Express + TypeScript!');
-});
+app.use("/api", routes);
 
 export default app;
