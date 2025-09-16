@@ -1,6 +1,6 @@
 import app from "./app";
 // @ts-ignore
-import sequelize from "./config/db";
+import sequelize from "../config/db";
 
 const PORT = process.env.PORT || 3000;
 

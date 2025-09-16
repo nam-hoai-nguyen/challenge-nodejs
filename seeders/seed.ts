@@ -1,5 +1,5 @@
-
-import sequelize from "../src/config/db";
+// @ts-ignore
+import sequelize from "../config/db";
 // @ts-ignore
 import { seedUsers } from "./userSeeder";
 
@@ -16,7 +16,3 @@ const runSeeder = async () => {
 };
 
 runSeeder();
-//npx sequelize-cli seed:generate --name demo-user
-
-//Chạy lệnh tạo ra seeder: npx ts-node seeders/seed.ts
-

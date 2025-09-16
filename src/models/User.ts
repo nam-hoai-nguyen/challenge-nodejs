@@ -1,7 +1,7 @@
 // src/models/User.ts
 import { DataTypes, Model, Optional } from "sequelize";
 // @ts-ignore
-import sequelize from "../config/db";
+import sequelize from "../../config/db";
 import { UserAttributes, UserCreationAttributes } from "../types/user";
 
 // Khai báo class Model

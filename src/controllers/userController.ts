@@ -3,7 +3,6 @@ import { Request, Response } from "express";
 import User from "../models/User";   // ✅ import default đúng cách
 import { successResponse, errorResponse } from "../utils/responseHandler";
 import { getAllUsersService } from "../services/userService";
-import { userListTransformer } from "../transformers/userTransformer";
 
 
 
