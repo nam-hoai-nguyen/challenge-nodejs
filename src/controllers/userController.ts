@@ -9,8 +9,10 @@ import { userListTransformer } from "../transformers/userTransformer";
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const users = await getAllUsersService();
-        return successResponse(res, "Lấy danh sách users thành công", userListTransformer(users));
+        const pageNo = parseInt(req.query.pageNo as string) || 1;
+        const pageSize = parseInt(req.query.pageSize as string) || 10;
+        const { data, meta } = await getAllUsersService({ pageNo, pageSize });
+        return successResponse(res, "Lấy danh sách users thành công",  { users: data, meta }, 200);
     } catch (error: any) {
         return errorResponse(res, error.message, 500);
     }

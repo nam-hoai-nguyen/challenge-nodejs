@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { validationResult, ValidationChain } from "express-validator";
-import { t, Locale } from "../lib/i18nMessages";
+import { t, detectLocale } from "../lib/i18n";
 
 export const validate =
     (validators: ValidationChain[]) =>
@@ -18,31 +18,12 @@ export const validate =
                 locale,
                 data: null,
                 error: result.array().map(e => ({
-                    field: e?.param,
+                    field: e?.path,
                     code: e.msg,
                     message: t(locale, e.msg),
                     value: e?.value
                 }))
             });
         };
-
-function detectLocale(req: Request): Locale {
-    const q = (req.query.lang || "").toString().toLowerCase();
-    if (isLocale(q)) return q as Locale;
-
-    const h = (req.headers["x-lang"] || "").toString().toLowerCase();
-    if (isLocale(h)) return h as Locale;
-
-    const accept = (req.headers["accept-language"] || "").toString().toLowerCase();
-    if (accept) {
-        const primary = accept.split(",")[0].split("-")[0].trim();
-        if (isLocale(primary)) return primary as Locale;
-    }
-    return "en";
-}
-
-function isLocale(v: string): v is Locale {
-    return ["vi", "ja", "en"].includes(v);
-}
 
 export default validate;
