@@ -1,14 +1,7 @@
-// src/transformers/userTransformer.ts
-export const userTransformer = (user: any) => {
-    return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        createdAt: user.createdAt,
-    };
-};
+// transformers/userTransformer.ts
+import { transformer } from "../utils/transformer";
+import User  from "../models/User";
 
-export const userListTransformer = (users: any[]) => {
-    return users.map(userTransformer);
+export const userListTransformer  = (user: User) => {
+    return transformer(user, ["id", "name", "email", "role", "createdAt", "updatedAt"]);
 };

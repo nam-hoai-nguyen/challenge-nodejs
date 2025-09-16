@@ -7,17 +7,18 @@ import {
     updateUser,
     deleteUser,
 } from "../controllers/userController";
-import { createUserSchema } from "../validators/userValidator";
-import { validate } from "../middlewares/validate";
+// import { createUserSchema } from "../validators/userValidator";
+// import { createUserValidator, updateUserValidator } from "../validators/userValidator";
+// import { validate } from "../middlewares/validate";
 import { authMiddleware } from "../middlewares/auth";
 
 
 const router = Router();
-
-router.get("/", authMiddleware, getAllUsers); // chỉ user có token mới xem được
+router.use(authMiddleware);
+router.get("/", getAllUsers); // chỉ user có token mới xem được
 router.get("/:id", getUserById);
-router.post("/", validate(createUserSchema), createUser);
+// router.post("/", validate(createUserSchema), createUser);
 router.put("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
-export default router; // 👈 Xuất mặc định
+export default router;

@@ -1,0 +1,17 @@
+{
+  "VALIDATION_FAILED": "Validation failed",
+  "ERR_NAME_REQUIRED": "Name is required",
+  "ERR_NAME_LEN": "Name must be 2–100 characters long",
+  "ERR_NAME_CHARS": "Name contains invalid characters",
+  "ERR_EMAIL_INVALID": "Invalid email address",
+  "ERR_EMAIL_LEN": "Email must be 5–160 characters long",
+  "ERR_EMAIL_DOMAIN": "Email domain not supported",
+  "ERR_PW_LEN": "Password must be at least 8 characters",
+  "ERR_PW_UPPER": "Password must contain at least one uppercase letter",
+  "ERR_PW_LOWER": "Password must contain at least one lowercase letter",
+  "ERR_PW_DIGIT": "Password must contain at least one digit",
+  "ERR_PW_SYMBOL": "Password must contain at least one symbol",
+  "ERR_PW_SPACE": "Password cannot contain whitespace",
+  "ERR_PW_REQUIRED": "Password is required",
+  "ERR_ROLE_INVALID": "Invalid role"
+}

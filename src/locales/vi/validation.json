@@ -1,0 +1,17 @@
+{
+  "VALIDATION_FAILED": "Dữ liệu không hợp lệ",
+  "ERR_NAME_REQUIRED": "Tên không được để trống",
+  "ERR_NAME_LEN": "Tên phải từ 2–100 ký tự",
+  "ERR_NAME_CHARS": "Tên chứa ký tự không hợp lệ",
+  "ERR_EMAIL_INVALID": "Email không hợp lệ",
+  "ERR_EMAIL_LEN": "Email phải 5–160 ký tự",
+  "ERR_EMAIL_DOMAIN": "Domain email không hỗ trợ",
+  "ERR_PW_LEN": "Mật khẩu phải >= 8 ký tự",
+  "ERR_PW_UPPER": "Mật khẩu cần ít nhất 1 chữ hoa",
+  "ERR_PW_LOWER": "Mật khẩu cần ít nhất 1 chữ thường",
+  "ERR_PW_DIGIT": "Mật khẩu cần ít nhất 1 chữ số",
+  "ERR_PW_SYMBOL": "Mật khẩu cần 1 ký tự đặc biệt",
+  "ERR_PW_SPACE": "Mật khẩu không được chứa khoảng trắng",
+  "ERR_PW_REQUIRED": "Mật khẩu không được để trống",
+  "ERR_ROLE_INVALID": "Role không hợp lệ"
+}
