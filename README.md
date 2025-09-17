@@ -40,3 +40,5 @@ migrations/XXXXXXXXXXXXXX-create-user.js
 
 6. Chạy lại migration
    npx sequelize-cli db:migrate
+
+

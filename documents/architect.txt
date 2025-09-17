@@ -1,0 +1,200 @@
+quy ước của DDD + Layered Architecture
+
+Domain layer (domain/) → thuần nghiệp vụ, entity, value object, domain event.
+
+Application layer (application/) → UseCase / Service orchestration.
+
+Infrastructure (infrastructure/) → DB, ORM, logging, email, i18n.
+
+Presentation (presentation/) → HTTP controllers, routes, middleware, DTO/mappers.
+
+Shared (shared/) → Helper, utils, types, errors dùng chung.
+
+Config (config/) → Env, schema, config toàn dự án.
+
+
+1️⃣ Domain Layer (domain/) – “Core”
+
+Mục đích: Chứa business logic thuần, không phụ thuộc framework hay DB.
+
+Thành phần:
+
+User.ts → Entity / Value Object: định nghĩa User, các thuộc tính, và các rule nghiệp vụ (vd: validate email, check password).
+
+UserErrors.ts → Custom errors liên quan user.
+
+IUserRepository.ts → Interface repository, abstract cách truy xuất dữ liệu (DB, API...). Domain chỉ cần interface, không quan tâm implementation.
+
+events/ → Domain events (vd: UserCreated, UserDeleted).
+
+Nguyên tắc DDD:
+
+Domain layer thuần, không import DB, HTTP, hoặc thư viện infrastructure.
+
+Quy tắc nghiệp vụ nằm ở đây, các layer khác chỉ orchestrate.
+
+2️⃣ Application Layer (application/)
+
+Mục đích: “Use Case” layer – orchestrate các hành động của hệ thống, kết nối domain + infrastructure.
+
+Thành phần:
+
+CreateUserUseCase.ts, GetUserProfileUseCase.ts → Chứa logic sequence: nhận input → gọi domain entity → gọi repository → trả output.
+
+Đặc điểm:
+
+Không chứa logic nghiệp vụ thuần, chỉ phối hợp domain & repository.
+
+Dùng DTO cho input/output để tách domain khỏi presentation.
+
+3️⃣ Infrastructure Layer (infrastructure/)
+
+Mục đích: Các implement cụ thể phụ thuộc framework / thư viện.
+
+Thành phần:
+
+db/sequelize/ → Sequelize model + repository implementation (SequelizeUserRepository.ts), init DB + association (index.ts).
+
+i18n/ → Adapter + Impl cho đa ngôn ngữ.
+
+logging/ → logger, write logs.
+
+Nguyên tắc DDD:
+
+Domain chỉ dùng interface (IUserRepository), không quan tâm Sequelize hay DB cụ thể.
+
+Có thể dễ dàng thay DB khác mà domain không cần sửa.
+
+4️⃣ Presentation Layer (presentation/)
+
+Mục đích: Giao tiếp với thế giới bên ngoài (HTTP, API).
+
+Thành phần:
+
+controllers/ → gọi UseCase, trả response.
+
+routes/ → định nghĩa endpoint.
+
+middleware/ → error handler, logger, validate request.
+
+mappers/ → map Domain → DTO.
+
+validators/ → validate payload request.
+
+transformers/ → nếu chỉ map DTO, nên gộp vào mappers/.
+
+Nguyên tắc:
+
+Controller mỏng, không chứa logic nghiệp vụ.
+
+Middleware chỉ xử lý cross-cutting concerns (logging, validation, error handling).
+
+5️⃣ Config Layer (config/)
+
+Mục đích: Cấu hình, env, schema validation.
+
+Ví dụ: config/index.ts đọc .env + validate schema (zod / joi).
+
+6️⃣ Shared Layer (shared/)
+
+Mục đích: Các thứ dùng chung trong toàn bộ dự án.
+
+Thành phần:
+
+types/ → types, interfaces chung.
+
+utils/ → helper functions.
+
+errors/ → base error classes.
+
+7️⃣ Luồng phụ thuộc Layered
+Presentation Layer
+        │
+        ▼
+Application Layer
+        │
+        ▼
+Domain Layer <────── Infrastructure Layer (implements interface domain)
+
+
+Presentation → Application → Domain → Infrastructure
+
+Domain không phụ thuộc infrastructure hay presentation.
+
+Infrastructure chỉ implement interface của domain.
+
+Tóm lại
+
+DDD: domain thuần (business logic, entity, value object, domain event).
+
+Layered: tách riêng presentation, application, infrastructure, domain.
+
+DTO + Mapper giúp presentation không trực tiếp truy cập domain entity.
+
+Repository pattern giúp domain độc lập DB.
+
+Mô tả sơ đồ minh họa Layered + DDD dựa trên cấu trúc folder của bạn, kèm luồng dữ liệu từ client đến DB.
+
+Client (HTTP Request)
+        │
+        ▼
+┌─────────────────────────┐
+│ Presentation Layer      │
+│ - controllers/          │
+│ - routes/               │
+│ - middleware/           │
+│ - mappers/              │
+└─────────┬───────────────┘
+          │ gọi UseCase, map DTO
+          ▼
+┌─────────────────────────┐
+│ Application Layer       │
+│ - CreateUserUseCase.ts  │
+│ - GetUserProfileUseCase │
+└─────────┬───────────────┘
+          │ orchestrate domain + repo
+          ▼
+┌─────────────────────────┐
+│ Domain Layer            │
+│ - User.ts (Entity/VO)   │
+│ - IUserRepository.ts    │
+│ - UserErrors.ts         │
+│ - events/               │
+└─────────┬───────────────┘
+          │ gọi interface repository
+          ▼
+┌─────────────────────────┐
+│ Infrastructure Layer    │
+│ - SequelizeUserRepo.ts  │ <- implement IUserRepository
+│ - models/               │ <- Sequelize model
+│ - db/index.ts           │ <- init + association
+│ - i18n/                 │
+│ - logging/logger.ts     │
+└─────────────────────────┘
+          │ kết nối DB / logging / external service
+          ▼
+       Database / External Services
+
+Luồng dữ liệu minh họa
+
+Client gửi HTTP request → Controller nhận.
+
+Controller validate input (middleware) → map payload vào DTO → gọi UseCase.
+
+UseCase orchestrate → dùng Domain Entity + gọi Repository Interface (IUserRepository).
+
+Infrastructure thực thi query DB qua SequelizeUserRepository, trả entity về.
+
+UseCase xử lý logic → trả entity cho controller.
+
+Controller map entity → DTO → trả JSON response cho client.
+
+Nguyên tắc chính
+
+Domain thuần: không biết về DB, HTTP, i18n.
+
+Infrastructure: thực hiện chi tiết, inject vào domain qua interface.
+
+Controller mỏng, chỉ orchestration + mapping DTO.
+
+Application layer = “UseCase layer” = cầu nối giữa domain & presentation.

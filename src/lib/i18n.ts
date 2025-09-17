@@ -34,7 +34,7 @@ export function t(locale: Locale, key: string): string {
     if (LOG_MISSING) {
         console.warn(`[i18n] Missing key (all locales): ${key}`);
     }
-    return key; // fallback cuối
+    return key;
 }
 
 export function detectLocale(
