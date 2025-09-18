@@ -2,8 +2,16 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS",        // 👈 đổi từ ESNext về CommonJS
+    "module": "CommonJS",
     "rootDir": "./src",
+    "paths": {
+      "@types/*": ["types/*"],
+      "@domain/*": ["domain/*"],
+      "@infrastructure/*": ["infrastructure/*"],
+      "@application/*": ["application/*"],
+      "@presentation/*": ["presentation/*"],
+      "@shared/*": ["shared/*"]
+    },
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,

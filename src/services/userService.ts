@@ -1,5 +1,4 @@
-// services/userService.ts (ví dụ)
-import User from "../models/User";
+import User from "../../src/infrastructure/db/sequelize/models/User";
 
 interface GetAllUsersParams {
     pageNo?: number;     // Trang hiện tại (>=1)

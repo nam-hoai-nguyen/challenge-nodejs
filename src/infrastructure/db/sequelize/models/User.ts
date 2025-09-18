@@ -1,8 +1,8 @@
 // src/models/User.ts
 import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../../../../../config/db";
 // @ts-ignore
-import sequelize from "../../config/db";
-import { UserAttributes, UserCreationAttributes } from "../types/user";
+import { UserAttributes, UserCreationAttributes } from '@types/user';
 
 // Khai báo class Model
 class User
@@ -15,7 +15,6 @@ class User
     public password!: string;
     public role!: string;
 
-    // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
@@ -38,7 +37,7 @@ User.init(
             unique: true,
         },
         password: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         role: {

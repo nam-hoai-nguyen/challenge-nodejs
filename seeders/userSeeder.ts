@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import User from "../src/models/User"; // import model User
+import User from "../src/infrastructure/db/sequelize/models/User";
 
 export const seedUsers = async () => {
     const users = [];

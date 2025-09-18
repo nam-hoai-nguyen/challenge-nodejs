@@ -1,6 +1,6 @@
-// src/controllers/userController.ts
+
 import { Request, Response } from "express";
-import User from "../models/User";   // ✅ import default đúng cách
+import User from "../infrastructure/db/sequelize/models/User";
 import { successResponse, errorResponse } from "../utils/responseHandler";
 import { getAllUsersService } from "../services/userService";
 

@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { UniqueConstraintError } from "sequelize";
 
-import User from "../models/User";
+import User from '../infrastructure/db/sequelize/models/User'
 import { generateToken } from "../utils/jwt";
 import { userListTransformer } from "../transformers/userTransformer";
 import { successResponse, errorResponse } from "../utils/responseHandler";
