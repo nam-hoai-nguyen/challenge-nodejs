@@ -16,6 +16,7 @@ export class User {
 
     static create(input: { id: string; email: string; name: string }) {
         const now = new Date();
+        console.log('1123213123123')
         return new User({
             id: input.id,
             email: input.email,

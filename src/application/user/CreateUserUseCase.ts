@@ -17,6 +17,7 @@ export class CreateUserUseCase {
         }
 
         const existing = await this.repo.findByEmail(input.email);
+        console.log(existing)
         if (existing) {
             throw new ConflictError('Email already exists');
         }
@@ -26,7 +27,7 @@ export class CreateUserUseCase {
             email: input.email,
             name: input.name
         });
-
+        console.log(user)
         await this.repo.add(user);
         return user;
     }
