@@ -1,4 +1,4 @@
-import User from "../../src/infrastructure/db/sequelize/models/User";
+import UserModel from "../infrastructure/db/sequelize/models/UserModel";
 
 interface GetAllUsersParams {
     pageNo?: number;     // Trang hiện tại (>=1)
@@ -11,7 +11,7 @@ export const getAllUsersService = async ({ pageNo = 1, pageSize = 10 }: GetAllUs
     const limit = pageSize > 100 ? 100 : pageSize; // giới hạn tối đa 100 (tùy chỉnh)
     const offset = (page - 1) * limit;
 
-    const { rows, count } = await User.findAndCountAll({
+    const { rows, count } = await UserModel.findAndCountAll({
         offset,
         limit,
         order: [["createdAt", "DESC"]],
@@ -35,7 +35,7 @@ export const getAllUsersService = async ({ pageNo = 1, pageSize = 10 }: GetAllUs
 };
 export const createUserService = async (data: any) => {
     // Ví dụ: check email trùng
-    const exists = await User.findOne({ where: { email: data.email } });
+    const exists = await UserModel.findOne({ where: { email: data.email } });
     if (exists) throw new Error("Email đã tồn tại");
-    return await User.create(data);
+    return await UserModel.create(data);
 };

@@ -5,7 +5,7 @@ import sequelize from "../../../../../config/db";
 import { UserAttributes, UserCreationAttributes } from '@types/user';
 
 // Khai báo class Model
-class User
+class UserModel
     extends Model<UserAttributes, UserCreationAttributes>
     implements UserAttributes
 {
@@ -20,7 +20,7 @@ class User
 }
 
 // Khởi tạo model
-User.init(
+UserModel.init(
     {
         id: {
             type: DataTypes.INTEGER.UNSIGNED,
@@ -54,4 +54,4 @@ User.init(
     }
 );
 
-export default User;
+export default UserModel;

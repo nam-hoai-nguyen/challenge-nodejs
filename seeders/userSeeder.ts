@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import User from "../src/infrastructure/db/sequelize/models/User";
+import UserModel from "../src/infrastructure/db/sequelize/models/UserModel";
 
 export const seedUsers = async () => {
     const users = [];
@@ -15,6 +15,6 @@ export const seedUsers = async () => {
         });
     }
 
-    await User.bulkCreate(users, { ignoreDuplicates: true });
+    await UserModel.bulkCreate(users, { ignoreDuplicates: true });
     console.log("✅ Seeded 10 users successfully!");
 };

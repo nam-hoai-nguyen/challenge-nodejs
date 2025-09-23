@@ -4,8 +4,6 @@ import { SequelizeUserRepository } from './infrastructure/repositories/sequelize
 // @ts-ignore
 import { RegisterUserUseCase } from './application/auth/RegisterUserUseCase';
 // @ts-ignore
-import { LoginUserUseCase } from './application/auth/LoginUserUseCase';
-// @ts-ignore
 import { AuthControllerV2 } from './presentation/http/controllers/AuthControllerV2';
 
 // (Sau này thêm: User CRUD Use Cases, Controllers khác, etc.)

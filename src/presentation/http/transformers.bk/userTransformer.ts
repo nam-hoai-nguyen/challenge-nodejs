@@ -1,7 +1,7 @@
 // transformers/userTransformer.ts
 import { transformer } from "../utils/transformer";
-import User  from "../infrastructure/db/sequelize/models/User";
+import UserModel  from "../infrastructure/db/sequelize/models/UserModel";
 
-export const userListTransformer  = (user: User) => {
+export const userListTransformer  = (user: UserModel) => {
     return transformer(user, ["id", "name", "email", "role", "createdAt", "updatedAt"]);
 };

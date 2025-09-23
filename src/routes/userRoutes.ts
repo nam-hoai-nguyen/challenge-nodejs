@@ -6,11 +6,11 @@ import {
     createUser,
     updateUser,
     deleteUser,
-} from "../controllers/userController";
-// import { createUserSchema } from "../validators/userValidator";
-// import { createUserValidator, updateUserValidator } from "../validators/userValidator";
-// import { validate } from "../middlewares/validate";
-import { authMiddleware } from "../middlewares/auth";
+} from "../controllers.bk/userController";
+import { createUserSchema } from "../validators/userValidator";
+import { createUserValidator, updateUserValidator } from "../validators/userValidator";
+import { validate } from "../middlewares.bk/validate";
+import { authMiddleware } from "../middlewares.bk/auth";
 
 
 const router = Router();

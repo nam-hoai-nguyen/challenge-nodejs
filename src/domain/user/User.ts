@@ -1,8 +1,7 @@
 export interface UserProps {
-    id: string;
     email: string;
     name: string;
-    status: 'ACTIVE' | 'INACTIVE';
+    password: string;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -14,24 +13,46 @@ export class User {
         this.props = props;
     }
 
-    static create(input: { id: string; email: string; name: string }) {
+    // Tạo mới entity
+    static create(input: { email: string; name: string; password: string; }) {
         const now = new Date();
-        console.log('1123213123123')
         return new User({
-            id: input.id,
             email: input.email,
             name: input.name,
-            status: 'ACTIVE',
+            password: input.password,
             createdAt: now,
             updatedAt: now
         });
     }
 
+    // Tái tạo entity từ DB
     static rehydrate(props: UserProps) {
         return new User(props);
     }
 
+    // Trả về dữ liệu thô
     toObject(): UserProps {
         return { ...this.props };
+    }
+
+    // --- GETTERS ---
+    get email(): string {
+        return this.props.email;
+    }
+
+    get name(): string {
+        return this.props.name;
+    }
+
+    get password(): string {
+        return this.props.password;
+    }
+
+    get createdAt(): Date {
+        return this.props.createdAt;
+    }
+
+    get updatedAt(): Date {
+        return this.props.updatedAt;
     }
 }
