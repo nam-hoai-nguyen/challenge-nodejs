@@ -25,7 +25,6 @@ export class CreateUserUseCase {
             password: input.password
         });
         const response = await this.repo.add(user);
-        console.log(response);
         return response;
     }
 }
