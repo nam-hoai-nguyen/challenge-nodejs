@@ -19,10 +19,20 @@ export class SequelizeUserRepository implements IUserRepository {
   }
 
   async add(user: User): Promise<User> {
-    return await UserModel.create({
+    const record = await UserModel.create({
       email: user.email,
       name: user.name,
       password: user.password,
+    });
+
+    return User.create({
+      id: record.id,
+      email: record.email,
+      name: record.name,
+      password: record.password,
+      role: record.role,
+      createdAt: record.createdAt,
+      updatedAt: record.updatedAt,
     });
   }
 }

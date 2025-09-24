@@ -1,6 +1,8 @@
 import { IUserRepository } from '../../domain/user/IUserRepository';
 import { User } from '../../domain/user/User';
 import { ConflictError, ValidationError } from '../../shared/errors/BaseError';
+import {BcryptService} from "../../infrastructure/security/BcryptService";
+import {JwtService} from "../../infrastructure/security/JwtService";
 
 interface Input {
   email: string;
@@ -23,9 +25,17 @@ export class RegisterUserUseCase {
     const user = User.create({
       email: input.email,
       name: input.name,
-      password: input.password,
+      password: await BcryptService.hash(input.password),
     });
-    const response = await this.repo.add(user);
-    return response;
+
+    const result = await  this.repo.add(user);
+
+    const token = JwtService.generateToken({
+      id: result.id,
+      email: result.email,
+      name: result.name,
+    });
+    console.log(token)
+    return { user:user.toObject(), token:token };
   }
 }

@@ -4,7 +4,7 @@ import { SequelizeUserRepository } from './infrastructure/repositories/sequelize
 // @ts-ignore
 import { RegisterUserUseCase } from './application/auth/RegisterUserUseCase';
 // @ts-ignore
-import { AuthControllerV2 } from './presentation/http/controllers/AuthControllerV2';
+import { AuthController } from './presentation/http/controllers/AuthController';
 
 // (Sau này thêm: User CRUD Use Cases, Controllers khác, etc.)
 
@@ -16,4 +16,4 @@ const registerUserUseCase = new RegisterUserUseCase(userRepository);
 const loginUserUseCase = new LoginUserUseCase(userRepository);
 
 // Controllers
-export const authControllerV2 = new AuthControllerV2(registerUserUseCase, loginUserUseCase);
+export const authControllerV2 = new AuthController(registerUserUseCase, loginUserUseCase);
