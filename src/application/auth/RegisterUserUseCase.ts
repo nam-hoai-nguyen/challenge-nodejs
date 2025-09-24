@@ -30,7 +30,7 @@ export class RegisterUserUseCase {
 
     const result = await  this.repo.add(user);
 
-    const token = JwtService.generateToken({
+      const token = JwtService.generateToken({
       id: result.id,
       email: result.email,
       name: result.name,

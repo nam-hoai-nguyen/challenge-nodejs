@@ -1,58 +1,63 @@
 export interface UserProps {
-  email: string;
-  name: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id?: number;
+    email: string;
+    name: string;
+    password: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export class User {
-  private props: UserProps;
+    private props: UserProps;
 
-  private constructor(props: UserProps) {
-    this.props = props;
-  }
+    private constructor(props: UserProps) {
+        this.props = props;
+    }
 
-  // Tạo mới entity
-  static create(input: { email: string; name: string; password: string }) {
-    const now = new Date();
-    return new User({
-      email: input.email,
-      name: input.name,
-      password: input.password,
-      createdAt: now,
-      updatedAt: now,
-    });
-  }
+    // Tạo mới entity
+    static create(input: { email: string; name: string; password: string }) {
+        const now = new Date();
+        return new User({
+            email: input.email,
+            name: input.name,
+            password: input.password,
+            createdAt: now,
+            updatedAt: now,
+        });
+    }
 
-  // Tái tạo entity từ DB
-  static rehydrate(props: UserProps) {
-    return new User(props);
-  }
+    // Tái tạo entity từ DB
+    static rehydrate(props: UserProps) {
+        return new User(props);
+    }
 
-  // Trả về dữ liệu thô
-  toObject(): UserProps {
-    return { ...this.props };
-  }
+    // Trả về dữ liệu thô
+    toObject(): UserProps {
+        return {...this.props};
+    }
 
-  // --- GETTERS ---
-  get email(): string {
-    return this.props.email;
-  }
+    // --- GETTERS ---
+    get id() {
+        return this.props.id;
+    }
 
-  get name(): string {
-    return this.props.name;
-  }
+    get email(): string {
+        return this.props.email;
+    }
 
-  get password(): string {
-    return this.props.password;
-  }
+    get name(): string {
+        return this.props.name;
+    }
 
-  get createdAt(): Date {
-    return this.props.createdAt;
-  }
+    get password(): string {
+        return this.props.password;
+    }
 
-  get updatedAt(): Date {
-    return this.props.updatedAt;
-  }
+    get createdAt(): Date {
+        return this.props.createdAt;
+    }
+
+    get updatedAt(): Date {
+        return this.props.updatedAt;
+    }
 }
