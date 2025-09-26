@@ -4,7 +4,7 @@
   "description": "Dự án thử thách học nodejs theo link https://www.youtube.com/watch?v=jR-n-cQnpNI&list=PLncHg6Kn2JT4smWdJceM0bDg4YUF3yqLu&index=1",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --project tsconfig.json src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "prepare": "husky install",

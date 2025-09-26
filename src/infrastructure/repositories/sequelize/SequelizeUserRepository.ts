@@ -1,4 +1,4 @@
-import { IUserRepository } from '../../../domain/user/IUserRepository';
+import { IUserRepository } from '@domain/user/IUserRepository';
 import { User } from '../../../domain/user/User';
 import UserModel from '../../db/sequelize/models/UserModel';
 

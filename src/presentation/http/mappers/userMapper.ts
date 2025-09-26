@@ -1,4 +1,4 @@
-import { User } from '../../../domain/user/User';
+import { User } from '@domain/user/User';
 
 export function userToDTO(user: User) {
   return {

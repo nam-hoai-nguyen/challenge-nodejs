@@ -1,7 +1,5 @@
-// @ts-ignore
-import { IUserRepository } from '@domain/user/IUserRepository';
-// @ts-ignore
-import { User } from '@domain/user/User';
+import {IUserRepository} from '@domain/user/IUserRepository';
+import {User} from '@domain/user/User';
 
 export class InMemoryUserRepository implements IUserRepository {
     private items: User[] = [];
@@ -10,7 +8,8 @@ export class InMemoryUserRepository implements IUserRepository {
         return this.items.find(u => u.toObject().email === email) || null;
     }
 
-    async add(user: User): Promise<void> {
+    async add(user: User): Promise<User> {
         this.items.push(user);
+        return user;
     }
 }

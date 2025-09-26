@@ -1,7 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// Dùng biến thay thế thay vì __dirname / __filename
 // @ts-ignore
 const filename: string = fileURLToPath(import.meta.url);
 const dirname: string = path.dirname(filename);

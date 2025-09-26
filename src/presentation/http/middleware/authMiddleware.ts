@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { JwtService } from "../../../infrastructure/security/JwtService";
+import { JwtService } from "@infrastructure/security/JwtService";
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;

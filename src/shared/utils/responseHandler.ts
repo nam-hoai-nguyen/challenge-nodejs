@@ -1,4 +1,3 @@
-// src/utils/responseHandler.ts
 import { Response } from "express";
 
 interface ApiResponse {

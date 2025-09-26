@@ -1,14 +1,22 @@
 // src/models/User.ts
-import { DataTypes, Model } from "sequelize";
+import {DataTypes, Model, Optional} from "sequelize";
 import sequelize from "../../../../../config/db";
-// @ts-ignore
-import { UserAttributes, UserCreationAttributes } from '@types/user';
 
-// Khai báo class Model
+interface UserAttributes {
+    id?: number;
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+type UserCreationAttributes = Optional<UserAttributes, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
+
 class UserModel
     extends Model<UserAttributes, UserCreationAttributes>
-    implements UserAttributes
-{
+    implements UserAttributes {
     public id!: number;
     public name!: string;
     public email!: string;
