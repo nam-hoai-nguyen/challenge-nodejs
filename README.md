@@ -32,8 +32,11 @@ migrations/XXXXXXXXXXXXXX-create-user.js
 4. Chạy migration
    npx sequelize-cli db:migrate
    npx ts-node ./migrations/20250912073420-create-user.ts
+   npx sequelize-cli model:generate 
+   --name UserTestModels 
+   --attributes name:string,email:string,password:string,role:string
 
-👉 Tạo bảng Users trong DB.
+5. 👉 Tạo bảng Users trong DB.
 👉 Sequelize tự động ghi log migration vào bảng SequelizeMeta.
 
 5. Undo migration (xóa bảng User)

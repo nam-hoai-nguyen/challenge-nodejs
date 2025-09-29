@@ -21,7 +21,7 @@ export default {
       },
       role: {
         type: DataTypes.STRING,
-        defaultValue: 'user',
+        defaultValue: 'employee',
       },
       created_at: {
         allowNull: false,
