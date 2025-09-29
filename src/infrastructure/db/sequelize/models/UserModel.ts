@@ -1,65 +1,63 @@
 // src/models/User.ts
-import {DataTypes, Model, Optional} from "sequelize";
-import sequelize from "../../../../../config/db";
+import { DataTypes, Model, Optional } from 'sequelize';
+import sequelize from '../../../../../config/db';
 
 interface UserAttributes {
-    id?: number;
-    name: string;
-    email: string;
-    password: string;
-    role: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+  id?: number;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 type UserCreationAttributes = Optional<UserAttributes, 'id' | 'role' | 'createdAt' | 'updatedAt'>;
 
-class UserModel
-    extends Model<UserAttributes, UserCreationAttributes>
-    implements UserAttributes {
-    public id!: number;
-    public name!: string;
-    public email!: string;
-    public password!: string;
-    public role!: string;
+class UserModel extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+  public id!: number;
+  public name!: string;
+  public email!: string;
+  public password!: string;
+  public role!: string;
 
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 // Khởi tạo model
 UserModel.init(
-    {
-        id: {
-            type: DataTypes.INTEGER.UNSIGNED,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-        },
-        password: {
-            type: DataTypes.STRING(255),
-            allowNull: false,
-        },
-        role: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: "employee",
-        },
+  {
+    id: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    {
-        sequelize,
-        modelName: "User",
-        tableName: "users",
-        timestamps: true,
-    }
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'employee',
+    },
+  },
+  {
+    sequelize,
+    modelName: 'User',
+    tableName: 'users',
+    timestamps: true,
+  },
 );
 
 export default UserModel;

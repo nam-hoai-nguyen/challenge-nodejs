@@ -1,67 +1,77 @@
 export interface UserProps {
-    id?: number;
-    email: string;
-    name: string;
-    role?: string;
-    password: string;
-    createdAt: Date;
-    updatedAt: Date;
+  id?: number;
+  email: string;
+  name: string;
+  role?: string;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export class User {
-    private props: UserProps;
+  private props: UserProps;
 
-    private constructor(props: UserProps) {
-        this.props = props;
-    }
+  private constructor(props: UserProps) {
+    this.props = props;
+  }
 
-    // Tạo mới entity
-    static create(input: { email: string; name: string; password: string }) {
-        const now = new Date();
-        return new User({
-            email: input.email,
-            name: input.name,
-            password: input.password,
-            createdAt: now,
-            updatedAt: now,
-        });
-    }
+  // Tạo mới entity
+  static create(input: {
+    id?: number;
+    email: string;
+    name: string;
+    role: string;
+    password: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }) {
+    const now = new Date();
+    return new User({
+      id: input.id,
+      email: input.email,
+      name: input.name,
+      role: input.role,
+      password: input.password,
+      createdAt: input.createdAt ?? now,
+      updatedAt: input.updatedAt ?? now,
+    });
+  }
 
-    // Tái tạo entity từ DB
-    static rehydrate(props: UserProps) {
-        return new User(props);
-    }
+  // Tái tạo entity từ DB
+  static rehydrate(props: UserProps) {
+    return new User(props);
+  }
 
-    // Trả về dữ liệu thô
-    toObject(): UserProps {
-        return {...this.props};
-    }
+  // Trả về dữ liệu thô
+  toObject(): UserProps {
+    return { ...this.props };
+  }
 
-    get id() {
-        return this.props.id;
-    }
+  get id() {
+    return this.props.id;
+  }
 
-    get email(): string {
-        return this.props.email;
-    }
+  get email(): string {
+    return this.props.email;
+  }
 
-    get name(): string {
-        return this.props.name;
-    }
+  get name(): string {
+    return this.props.name;
+  }
 
-    get password(): string {
-        return this.props.password;
-    }
+  get password(): string {
+    return this.props.password;
+  }
 
-    get createdAt(): Date {
-        return this.props.createdAt;
-    }
+  get createdAt(): Date {
+    return this.props.createdAt;
+  }
 
-    get updatedAt(): Date {
-        return this.props.updatedAt;
-    }
+  get updatedAt(): Date {
+    return this.props.updatedAt;
+  }
 
-    get role() {
-        return this.props.role;
-    }
+  get role() {
+    return this.props.role;
+  }
 }

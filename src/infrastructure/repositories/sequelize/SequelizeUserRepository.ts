@@ -6,7 +6,6 @@ export class SequelizeUserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User | null> {
     const record = await UserModel.findOne({ where: { email } });
     if (!record) return null;
-
     return User.create({
       id: record.id,
       email: record.email,

@@ -1,20 +1,20 @@
-import { faker } from "@faker-js/faker";
-import UserModel from "../src/infrastructure/db/sequelize/models/UserModel";
+import { faker } from '@faker-js/faker';
+import UserModel from '../src/infrastructure/db/sequelize/models/UserModel';
 
 export const seedUsers = async () => {
-    const users = [];
+  const users = [];
 
-    for (let i = 0; i < 10; i++) {
-        users.push({
-            name: faker.person.fullName(),
-            email: faker.internet.email(),
-            password: faker.internet.password({ length: 8 }),
-            role: "employee",
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        });
-    }
+  for (let i = 0; i < 10; i++) {
+    users.push({
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      password: faker.internet.password({ length: 8 }),
+      role: 'employee',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+  }
 
-    await UserModel.bulkCreate(users, { ignoreDuplicates: true });
-    console.log("✅ Seeded 10 users successfully!");
+  await UserModel.bulkCreate(users, { ignoreDuplicates: true });
+  console.log('✅ Seeded 10 users successfully!');
 };
