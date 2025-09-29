@@ -20,7 +20,7 @@ export class User {
     id?: number;
     email: string;
     name: string;
-    role: string;
+    role?: string;
     password: string;
     createdAt?: Date;
     updatedAt?: Date;
@@ -30,7 +30,7 @@ export class User {
       id: input.id,
       email: input.email,
       name: input.name,
-      role: input.role,
+      role: input.role ?? 'employee',
       password: input.password,
       createdAt: input.createdAt ?? now,
       updatedAt: input.updatedAt ?? now,

@@ -31,6 +31,7 @@ migrations/XXXXXXXXXXXXXX-create-user.js
 
 4. Chạy migration
    npx sequelize-cli db:migrate
+   npx ts-node ./migrations/20250912073420-create-user.ts
 
 👉 Tạo bảng Users trong DB.
 👉 Sequelize tự động ghi log migration vào bảng SequelizeMeta.
@@ -40,5 +41,8 @@ migrations/XXXXXXXXXXXXXX-create-user.js
 
 6. Chạy lại migration
    npx sequelize-cli db:migrate
+7. Build tạo thư mục dist
+   npm run build
+   tsc -p tsconfig.json
 
 
