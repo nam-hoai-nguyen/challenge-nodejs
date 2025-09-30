@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// @ts-ignore
+// @ts-expect-error
 const filename: string = fileURLToPath(import.meta.url);
 const dirname: string = path.dirname(filename);
 
