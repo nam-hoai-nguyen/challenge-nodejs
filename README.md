@@ -12,13 +12,13 @@ Dự án thử thách học nodejs theo link https://www.youtube.com/watch?v=jR-
 
 👉 Tạo ra các thư mục mặc định:
 
-config/config.js
+C:\Users\258056\Documents\namnh\chanllege\2025\challenge-nodejs\src\config\db.ts
 
-models/
+C:\Users\258056\Documents\namnh\chanllege\2025\challenge-nodejs\src\infrastructure\db\sequelize\models\UserModel.ts
 
-migrations/
+C:\Users\258056\Documents\namnh\chanllege\2025\challenge-nodejs\migrations\20250912073420-create-user.ts
 
-seeders/
+C:\Users\258056\Documents\namnh\chanllege\2025\challenge-nodejs\seeders\userSeeder.ts
 
 3. Tạo model + migration (ví dụ: User)
    npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role:string
@@ -37,7 +37,7 @@ migrations/XXXXXXXXXXXXXX-create-user.js
    --attributes name:string,email:string,password:string,role:string
 
 5. 👉 Tạo bảng Users trong DB.
-👉 Sequelize tự động ghi log migration vào bảng SequelizeMeta.
+👉 Table Sequelize tự động ghi log migration vào bảng SequelizeMeta.
 
 5. Undo migration (xóa bảng User)
    npx sequelize-cli db:migrate:undo --name 20250912073420-create-user.js

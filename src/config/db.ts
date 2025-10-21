@@ -1,17 +1,29 @@
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
 
-dotenv.config();
+// Vì sequelize-config dùng export = => phải require
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const allConfig = require('./sequelize-config') as {
+  [env: string]: {
+    username: string;
+    password: string;
+    database: string;
+    host: string;
+    dialect: any;
+    logging: boolean | ((sql: string) => void);
+  };
+};
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'test',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASS || '',
-  {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'mysql',
-    logging: false,
-  },
-);
+const env = process.env.NODE_ENV || 'development';
+const cfg = allConfig[env];
+
+if (!cfg) {
+  throw new Error(`Database config for env "${env}" not found`);
+}
+
+export const sequelize = new Sequelize(cfg.database, cfg.username, cfg.password, {
+  host: cfg.host,
+  dialect: cfg.dialect,
+  logging: cfg.logging,
+});
 
 export default sequelize;
